@@ -7,8 +7,12 @@ if not firebase_admin._apps:
     firebase_admin.initialize_app(cred)
 
 
-def send_fcm_message(registration_tokens: str, data: dict):
+def send_fcm_message(registration_tokens: list, data: dict):
     message = messaging.MulticastMessage(
+        notification=messaging.Notification(
+            title="Hello",
+            body="Testing Notification Body"
+        ),
         data=data,
         tokens=registration_tokens
     )
