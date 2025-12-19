@@ -1,15 +1,14 @@
 import firebase_admin
-from firebase_admin import credentials, messaging
-from .models import FCMToken
+from firebase_admin import messaging, credentials
+
+from notifications.models import FCMToken
 
 # Initialize Firebase only once
 if not firebase_admin._apps:
     cred = credentials.ApplicationDefault()
     firebase_admin.initialize_app(cred)
 
-
 def send_notification_to_user(user_id, data):
-
     tokens = list(
         FCMToken.objects
         .filter(user_id=user_id)
