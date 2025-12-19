@@ -1,6 +1,9 @@
 from django.urls import path
-from .views import SendFCMMessageAPIView
+from .views import SendNotificationByUserAPIView, GetRegisteredUsersAPIView
+from .views import RegisterUserTokenAPIView
 
 urlpatterns = [
-    path('send/', SendFCMMessageAPIView.as_view(), name='send-fcm'),
+    path('register/', RegisterUserTokenAPIView.as_view()),
+    path('users/', GetRegisteredUsersAPIView.as_view()),
+    path('sendUser', SendNotificationByUserAPIView.as_view()),
 ]
